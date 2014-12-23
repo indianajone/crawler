@@ -1,4 +1,6 @@
 {
+  "name": "mustache/crawler",
+  "description": "A Crawler",
    "require": {
       "fabpot/goutte": "2.0.*@dev"
    },
