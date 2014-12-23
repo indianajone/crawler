@@ -1,0 +1,13 @@
+{
+   "require": {
+      "fabpot/goutte": "2.0.*@dev"
+   },
+   "autoload": {
+   		"files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Grabber\\": "src"
+        }
+    }
+}
