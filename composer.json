@@ -2,7 +2,8 @@
   "name": "mustache/crawler",
   "description": "A Crawler",
    "require": {
-      "fabpot/goutte": "2.0.*@dev"
+      "fabpot/goutte": "2.0.*@dev",
+      "nesbot/carbon": "*"
    },
    "autoload": {
    		"files": [

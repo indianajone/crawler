@@ -1,5 +1,6 @@
 <?php namespace Grabber\Parser;
 
+use Carbon\Carbon;
 use \InvalidArgumentException;
 use Grabber\Contract\Driver;
 use Grabber\Exception\TransformerNotFoundException;
@@ -56,6 +57,30 @@ abstract class AbstractParser {
 		$namespace = (new ReflectionClass($this))->getNamespaceName();
 
 		return preg_replace('/Parser/', 'Transformer', $namespace) . 'Transformer';
+	}
+
+	protected function toDateTimeString($pattern, $subject)
+	{
+		preg_match($pattern, $subject, $matches);
+
+		$month = [
+			'มกราคม' => 1,
+			'กุมภาพันธ์'  => 2,
+			'มีนาคม' => 3,
+			'เมษายน' => 4,
+			'พฤษภาคม' => 5,
+			'มิถุนายน' => 6,
+			'กรกฎาคม' => 7,
+			'สิงหาคม' => 8,
+			'กันยายน' => 9,
+			'ตุลาคม' => 10,
+			'พฤศจิกายน' => 11,
+			'ธันวาคม' => 12
+		];
+
+		$date = Carbon::createFromDate($matches[3]-543, $month[$matches[2]], $matches[1])->timezone('Asia/Bangkok');
+
+		return $date->toDateTimeString();
 	}
 
 }

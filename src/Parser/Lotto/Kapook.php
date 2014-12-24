@@ -1,5 +1,6 @@
 <?php namespace Grabber\Parser\Lotto;
 
+use Carbon\Carbon;
 use Grabber\Parser\AbstractParser;
 use Grabber\Contract\Lotto;
 
@@ -13,7 +14,9 @@ class Kapook extends AbstractParser implements Lotto {
 
 	public function date()
 	{
-		return $this->driver->get('#spLottoDate');
+		$date = $this->driver->get('#spLottoDate');
+
+		return $this->toDateTimeString('/(\d{2})(?:\s)(.+?)(?:\s)(\d{4})/', $date);
 	}
 
 	public function backTwo()
