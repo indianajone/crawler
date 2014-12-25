@@ -49,9 +49,9 @@ class HtmlDriver implements Driver
 
 	public function createData($classname, array $options=[])
 	{
-		$default = $this->complieOptions($options);
-
 		$this->setParser($classname);
+	
+		$default = $this->complieOptions($options);
 
 		$crawler = $this->getClient()->fetch($default['url']);
 
