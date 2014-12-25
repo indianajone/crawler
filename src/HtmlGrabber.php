@@ -11,10 +11,6 @@ class HtmlGrabber extends Grabber
 
 	public function fetch($url)
 	{
-		// $request = $this->client->get($url, ['future' => true]);
-		// $request->send();
-
-		// return $request;
 		return $this->client->request('GET', $url);
 	}
 }

@@ -35,6 +35,11 @@ abstract class AbstractParser {
 		return $this->path;
 	}
 
+	public function setUrl($url)
+	{
+		$this->path = $url;
+	}
+
 	public function transform()
 	{
 		return $this->getTransformer()->transform($this);

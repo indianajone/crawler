@@ -40,11 +40,20 @@ class HtmlDriver implements Driver
 		return count($num) > 1 ? $num : $num[0];
 	}
 
-	public function createData($classname)
+	protected function complieOptions(array $options)
 	{
+		return array_merge([
+			'url' => $this->parser->getUrl()
+		], $options);
+	}
+
+	public function createData($classname, array $options=[])
+	{
+		$default = $this->complieOptions($options);
+
 		$this->setParser($classname);
 
-		$crawler = $this->getClient()->fetch($this->parser->getUrl());
+		$crawler = $this->getClient()->fetch($default['url']);
 
 		$this->setCrawler($crawler);
 

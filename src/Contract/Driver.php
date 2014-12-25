@@ -2,7 +2,7 @@
 
 interface Driver {
 
-	public function createData($classname);
+	public function createData($classname, array $options=[]);
 
 	public function get($selector='*');
 
