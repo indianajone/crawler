@@ -83,7 +83,9 @@ abstract class AbstractParser {
 			'ธันวาคม' => 12
 		];
 
-		$date = Carbon::createFromDate($matches[3]-543, $month[$matches[2]], $matches[1])->timezone('Asia/Bangkok');
+		$date = Carbon::create($matches[3]-543, $month[$matches[2]], $matches[1])
+						->timezone('Asia/Bangkok')
+						->startOfDay();
 
 		return $date->toDateTimeString();
 	}
