@@ -16,7 +16,7 @@ class Kapook extends AbstractParser implements Lotto {
 	{
 		$date = $this->driver->get('#spLottoDate');
 
-		return $this->toDateTimeString('/(\d{2})(?:\s)(.+?)(?:\s)(\d{4})/', $date);
+		return $this->toDateTimeString('/(\d{1,2})(?:\s)(.+?)(?:\s)(\d{4})/', $date);
 	}
 
 	public function backTwo()
