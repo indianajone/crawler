@@ -1,6 +1,5 @@
 <?php namespace Grabber\Parser\Lotto;
 
-use Carbon\Carbon;
 use Grabber\Parser\AbstractParser;
 use Grabber\Contract\Lotto;
 

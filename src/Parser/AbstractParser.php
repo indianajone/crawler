@@ -5,6 +5,7 @@ use \InvalidArgumentException;
 use Grabber\Contract\Driver;
 use Grabber\Exception\TransformerNotFoundException;
 use Grabber\Transformer\LottoTransformer;
+use Grabber\Utils\ThaiDate;
 use ReflectionClass;
 
 abstract class AbstractParser {
@@ -66,28 +67,9 @@ abstract class AbstractParser {
 
 	protected function toDateTimeString($pattern, $subject)
 	{
-		preg_match($pattern, $subject, $matches);
+		$dt = ThaiDate::parse($pattern, $subject);
 
-		$month = [
-			'มกราคม' => 1,
-			'กุมภาพันธ์'  => 2,
-			'มีนาคม' => 3,
-			'เมษายน' => 4,
-			'พฤษภาคม' => 5,
-			'มิถุนายน' => 6,
-			'กรกฎาคม' => 7,
-			'สิงหาคม' => 8,
-			'กันยายน' => 9,
-			'ตุลาคม' => 10,
-			'พฤศจิกายน' => 11,
-			'ธันวาคม' => 12
-		];
-
-		$date = Carbon::create($matches[3]-543, $month[$matches[2]], $matches[1])
-						->timezone('Asia/Bangkok')
-						->startOfDay();
-
-		return $date->toDateTimeString();
+		return Carbon::instance($dt)->toDateTimeString();
 	}
 
 }
