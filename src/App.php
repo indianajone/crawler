@@ -5,7 +5,7 @@ class App {
 	public function run()
 	{
 		$data = Factory::make('html')
-						->createData('Grabber\Parser\Lotto\Kapook');
+						->createData('Grabber\Parser\Lotto\Glo');
 
 		dd($data);
 	}	

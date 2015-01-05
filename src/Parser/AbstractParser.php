@@ -65,11 +65,9 @@ abstract class AbstractParser {
 		return preg_replace('/Parser/', 'Transformer', $namespace) . 'Transformer';
 	}
 
-	protected function toDateTimeString($pattern, $subject)
+	protected function toDateTimeString($pattern, $date)
 	{
-		$dt = ThaiDate::parse($pattern, $subject);
-
-		return Carbon::instance($dt)->toDateTimeString();
+		return ThaiDate::parse($pattern, $date)->format();
 	}
 
 }
