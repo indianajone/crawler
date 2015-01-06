@@ -1,6 +1,5 @@
 <?php namespace Grabber\Parser\Lotto;
 
-use \InvalidArgumentException;
 use Grabber\Parser\AbstractParser;
 use Grabber\Contract\Lotto;
 
@@ -14,7 +13,9 @@ class Glo extends AbstractParser implements Lotto {
 
 	public function date()
 	{
-		return $this->driver->first()->filter('.bigBold1')->text();
+		$date = $this->cleanNonBreakingSpace($this->driver->get('.bigBold1'), 'HTML-ENTITIES');
+
+		return $this->toDateTimeString('/(\d{1,2}(?![^\s]+)?)(?:\s+)?(.[^\s]+)(?:\s+)(?:.+)?(\d{4})/', $date);
 	}
 
 	public function backTwo()
@@ -35,7 +36,7 @@ class Glo extends AbstractParser implements Lotto {
 
 	public function firstPrize()
 	{
-		return $this->driver->first()->filter('.bigBold2')->text();
+		return $this->driver->get('.bigBold2');
 	}
 
 	public function secondPrize()

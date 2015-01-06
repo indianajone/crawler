@@ -104,7 +104,7 @@ class ThaiDate {
 
     public function year()
     {
-        return $this->year - static::YEAR_DIFF;
+        return $this->year - self::YEAR_DIFF;
     }
 
     public function month()

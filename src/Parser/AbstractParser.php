@@ -65,6 +65,13 @@ abstract class AbstractParser {
 		return preg_replace('/Parser/', 'Transformer', $namespace) . 'Transformer';
 	}
 
+	protected function cleanNonBreakingSpace($str)
+	{
+		$htmlStr = mb_convert_encoding($str, 'HTML-ENTITIES');
+
+		return html_entity_decode(preg_replace('/&nbsp;/', ' ', $htmlStr));
+	}
+
 	protected function toDateTimeString($pattern, $date)
 	{
 		return ThaiDate::parse($pattern, $date)->format();
