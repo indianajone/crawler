@@ -1,10 +1,8 @@
 <?php namespace Grabber\Parser;
 
-use Carbon\Carbon;
-use \InvalidArgumentException;
+use InvalidArgumentException;
 use Grabber\Contract\Driver;
 use Grabber\Exception\TransformerNotFoundException;
-use Grabber\Transformer\LottoTransformer;
 use Grabber\Utils\ThaiDate;
 use ReflectionClass;
 
