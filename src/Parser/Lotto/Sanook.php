@@ -9,7 +9,7 @@ class Sanook extends AbstractParser implements Lotto {
 	 * Path to your origin source
 	 * @var String
 	 */
-	protected $path = 'http://news.sanook.com/lotto/check/หวย-ผลสลากกินแบ่งรัฐบาลงวดประจำวันที่-1-กันยายน-2551/';
+	protected $path = 'http://news.sanook.com/lotto/check/ตรวจสลากกินแบ่งรัฐบาล-ตรวจหวย-30-ธันวาคม-2557/';
 
 	public function date()
 	{
@@ -67,6 +67,7 @@ class Sanook extends AbstractParser implements Lotto {
 
 			if(count($data)) $html .= $data->html();			
 		}
+
 
 		return $this->toArray($this->strip_html_tags($html));
 	}
