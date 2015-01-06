@@ -9,7 +9,7 @@ class Sanook extends AbstractParser implements Lotto {
 	 * Path to your origin source
 	 * @var String
 	 */
-	protected $path = 'http://news.sanook.com/lotto/check/หวย-ผลสลากกินแบ่งรัฐบาลงวดประจำวันที่-16-มกราคม-2550/';
+	protected $path = 'http://news.sanook.com/lotto/check/หวย-ผลสลากกินแบ่งรัฐบาลงวดประจำวันที่-1-กันยายน-2551/';
 
 	public function date()
 	{
@@ -20,7 +20,7 @@ class Sanook extends AbstractParser implements Lotto {
 
 	public function backTwo()
 	{
-		return $this->driver->get('.lot-two');;
+		return $this->driver->get('.lot-two');
 	}
 
 	public function backThree()
@@ -63,9 +63,9 @@ class Sanook extends AbstractParser implements Lotto {
 
 		foreach (range(3,12) as $index)
 		{
-			$html .= $this->driver
-					->filterXpath('//*[@id="toc"]/div[2]/div[2]/table[4]/tr['.$index.']')
-					->html();
+			$data = $this->driver->filterXpath('//*[@id="toc"]/div[2]/div[2]/table[4]/tr['.$index.']');
+
+			if(count($data)) $html .= $data->html();			
 		}
 
 		return $this->toArray($this->strip_html_tags($html));
@@ -77,9 +77,9 @@ class Sanook extends AbstractParser implements Lotto {
 
 		foreach (range(3,22) as $index)
 		{
-			$html .= $this->driver
-					->filterXpath('//*[@id="toc"]/div[2]/div[2]/table[5]/tr['.$index.']')
-					->html();
+			$data = $this->driver->filterXpath('//*[@id="toc"]/div[2]/div[2]/table[5]/tr['.$index.']');
+
+			if(count($data)) $html .= $data->html();
 		}
 
 		return $this->toArray($this->strip_html_tags($html));
