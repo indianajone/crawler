@@ -31,7 +31,7 @@ class Glo extends AbstractParser implements Lotto {
 		$data = $this->driver->first()->filter('.bigBold')->html();
 		
 		// Split anything thats not digit.
-		return preg_split('/[\D]+/', $data);
+		return preg_split('/[^\d]+/', $data);
 	}
 
 	public function firstPrize()

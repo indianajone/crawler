@@ -26,7 +26,7 @@ abstract class AbstractParser {
 
 	public function getUrl()
 	{
-		if (!isset($this->path) or !filter_var($this->path, FILTER_VALIDATE_URL))
+		if (!isset($this->path))
 		{
 			throw new InvalidArgumentException('Please set property [$path] to your origin source');
 		}
@@ -42,6 +42,18 @@ abstract class AbstractParser {
 	public function transform()
 	{
 		return $this->getTransformer()->transform($this);
+	}
+
+	public function strip_html_tags($html)
+	{
+		$html = preg_replace('/\s+/', '', $html);
+		
+		return  preg_replace('#<[^>]+>#', '&nbsp;', $html);
+	}
+
+	public function toArray($data)
+	{
+		return preg_split('/[^\d]+/', trim($this->cleanNonBreakingSpace($data)));
 	}
 
 	protected function getTransformer()
