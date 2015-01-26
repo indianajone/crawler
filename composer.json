@@ -2,8 +2,7 @@
   "name": "mustache/crawler",
   "description": "A Crawler",
    "require": {
-      "fabpot/goutte": "2.0.*@dev",
-      "nesbot/carbon": "*"
+      "fabpot/goutte": "2.0.*@dev"
    },
    "require-dev": {
       "phpspec/phpspec": "~2.0"

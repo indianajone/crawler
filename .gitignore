@@ -1,3 +1,4 @@
 /vendor
 index.php
+App.php
 .DS_Store
