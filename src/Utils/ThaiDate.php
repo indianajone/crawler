@@ -1,8 +1,5 @@
 <?php namespace Grabber\Utils;
 
-use Carbon\Carbon;
-use Exception;
-
 class ThaiDate {
 
     /**
@@ -10,10 +7,15 @@ class ThaiDate {
      */
     const YEAR_DIFF = 543;
 
-     /**
+    /**
      * The default timezone.
      */
     const TIMEZONE = 'Asia/Bangkok';
+
+    /**
+     * The default date time format
+     */
+    const DEFAULT_TO_STRING_FORMAT = 'Y-m-d H:i:s';
 
     /**
      * The month constants.
@@ -86,13 +88,20 @@ class ThaiDate {
         $this->date = $date;
     }
 
+    /**
+     * Parse date string from given format.
+     * 
+     * @param  string $pattern 
+     * @param  string $date    
+     * @return static
+     */
     public static function parse($pattern, $date)
     {
         preg_match($pattern, $date, $matches);
 
         if(!$matches)
         {
-            throw new Exception("No matches were found on given pattern. Please check you date pattern.", 404);
+            throw new \Exception("No matches were found on given pattern. Please check you date pattern.", 404);
         }
 
         array_shift($matches);
@@ -102,11 +111,21 @@ class ThaiDate {
         return new static($year, $month, $date);
     } 
 
+    /**
+     * get instance year
+     * 
+     * @return integer
+     */
     public function year()
     {
         return $this->year - self::YEAR_DIFF;
     }
 
+    /**
+     * get instance month
+     *      
+     * @return integer
+     */
     public function month()
     {
         $monthNum = 0;
@@ -125,15 +144,30 @@ class ThaiDate {
         return $monthNum;
     }
 
+    /**
+     * get instance date
+     * 
+     * @return integer
+     */
     public function date()
     {
         return (int) $this->date;
     }
 
+    /**
+     * Format datetime object as given format
+     * 
+     * @param  string   $format
+     * @return string
+     */
     public function format($format=null)
     {
-        $format = $format ?: Carbon::DEFAULT_TO_STRING_FORMAT;
+        $format = $format ?: self::DEFAULT_TO_STRING_FORMAT;
 
-        return Carbon::create($this->year(), $this->month(), $this->date(), 0, 0, 0, self::TIMEZONE)->format($format);
+        return \DateTime::createFromFormat(
+                    self::DEFAULT_TO_STRING_FORMAT,
+                    $this->year().'-'.$this->month().'-'.$this->date().' 00:00:00', 
+                    new \DateTimeZone(self::TIMEZONE))
+                    ->format($format);
     }
 }

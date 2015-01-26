@@ -5,7 +5,6 @@ class HtmlGrabber extends Grabber
 	/**
 	 * @var Goutte\Client
 	 */
-	// protected $client = 'GuzzleHttp\Client';
 	protected $client = 'Goutte\Client'; 
 	
 
